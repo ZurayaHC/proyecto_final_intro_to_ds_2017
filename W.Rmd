@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "Zuraya Huizar Cruz"
+date: "9 de diciembre de 2017"
+output: html_document
+---
+
+#Walmart Recruiting: Trip Type Classification
+
+#Descripción de variables
+TripType - a categorical id representing the type of shopping trip the customer made. This is the ground truth that you are predicting. TripType_999 is an "other" category.
+VisitNumber - an id corresponding to a single trip by a single customer
+Weekday - the weekday of the trip
+Upc - the UPC number of the product purchased
+ScanCount - the number of the given item that was purchased. A negative value indicates a product return.
+DepartmentDescription - a high-level description of the item's department
+FinelineNumber - a more refined category for each of the products, created by Walmart
+
+
+
+```{r}
+library(dplyr)
+#Importamos los datos de entrenamiento
+rm(list = ls(all = TRUE))
+train <- read.csv("train.csv",header=TRUE)
+saveRDS(train,"train.rds")
+#Exploramos los datos
+summary(train)
+glimpse(train)
+#Preparamos los datos asignando el tipo correcto de cada variable
+train$TripType<-as.factor(train$TripType)
+train$VisitNumber<-as.factor(train$VisitNumber)
+train$Upc<-as.factor(train$Upc)
+train$FinelineNumber<-as.factor(train$FinelineNumber)
+```
+
+
+##EDA (R)
+```{r}
+library(ggplot2)
+EDA_univariado(train)
+EDA_bivariado(train)
+```
+
+##Limpieza (R)
+```{r}
+
+```
+##Imputación (R o Python)
+##Transformación (Python)
+##Ingeniería de características (Python)
+##Selección (Python)
+##Filtrado (Python)
+##Predicción con pipelines (multiples algoritmos) (Python) 
+##Medición
